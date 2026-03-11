@@ -10,15 +10,10 @@ class RolePermissionSeeder extends Seeder
 {
     public function run()
     {
-        $permissions = [
-            'manage employees',
-            'manage projects',
-            'view tasks',
-        ];
 
-        foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission]);
-        }
+        Permission::create(['name' => 'manage employees']);
+        Permission::create(['name' => 'manage projects']);
+        Permission::create(['name' => 'view tasks']);
 
         $admin = Role::create(['name' => 'Admin']);
         $manager = Role::create(['name' => 'Manager']);

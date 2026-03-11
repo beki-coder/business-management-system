@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -33,4 +33,35 @@
             </main>
         </div>
     </body>
+</html> --}}
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laravel RBAC App</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+</head>
+<body>
+    <header>
+        @include('layouts.navigation') <!-- optional navigation -->
+    </header>
+
+    <main>
+        @yield('content') <!-- This replaces $slot -->
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Company</p>
+    </footer>
+
+    <script src="{{ asset('js/app.js') }}"></script>
+</body>
 </html>

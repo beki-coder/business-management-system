@@ -1,60 +1,27 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
-// Public welcome page
 Route::get('/', function () {
-    return "Welcome to the Role-Based Access Control System. Please <a href='/login'>login</a> to continue.";
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-// Temporary login route (needed for auth middleware)
-// Route::get('/login', function() {
-//     return 'Login page - implement your form here';
-// })->name('login');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Dashboard route: redirect based on role
-// Route::get('/dashboard', function() {})->middleware(['auth', 'role.redirect']);
-
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard'); // Create this Blade file
-    })->name('dashboard');
-});
-
-// Admin dashboard
-Route::middleware(['auth', 'role:Admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    });
-});
-
-// Manager dashboard
-Route::middleware(['auth', 'role:Manager'])->group(function () {
-    Route::get('/manager/dashboard', function () {
-        return view('manager.dashboard');
-    });
-});
-
-// Employee dashboard
-Route::middleware(['auth', 'role:Employee'])->group(function () {
-    Route::get('/employee/dashboard', function () {
-        return view('employee.dashboard');
-    });
-});
-
-// User profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Optional: Employee management permission
-Route::get('/employees', function () {
-    return "Employee List";
-})->middleware(['auth', 'permission:manage employees']);
-
-// Include auth routes if using Laravel auth scaffolding
 require __DIR__.'/auth.php';
