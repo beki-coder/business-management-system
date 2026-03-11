@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class Invoice extends Model
 {
     protected $fillable = [
-        'title',
-        'description',
-        'project_id',
-        'employee_id',
+        'client_id',
+        'amount',
         'status'
     ];
 }
