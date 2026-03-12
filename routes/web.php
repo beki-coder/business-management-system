@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ClientController;
-
+use App\Http\Controllers\Employee\TaskController as EmployeeTaskController;
 use App\Http\Controllers\Manager\ProjectController;
 use App\Http\Controllers\Manager\TaskController;
 
@@ -38,7 +38,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
-
+// Route::get('/dashboard', function () {
+//     $user = auth()->user();
+//     if ($user->hasRole('Admin')) return redirect()->route('admin.dashboard');
+//     if ($user->hasRole('Manager')) return redirect()->route('manager.projects.index');
+//     if ($user->hasRole('Employee')) return redirect()->route('employee.tasks.index');
+//     abort(403);
+// })->middleware(['auth','verified'])->name('dashboard');
 /*
 |--------------------------------------------------------------------------
 | Profile (Breeze)
@@ -102,6 +108,13 @@ Route::middleware(['auth','role:Admin|Manager'])->group(function () {
 
 });
 
+
+Route::middleware(['auth', 'role:Employee'])
+     ->prefix('employee')
+     ->name('employee.')
+     ->group(function () {
+         Route::resource('tasks', EmployeeTaskController::class);
+     });
 
 /*
 |--------------------------------------------------------------------------

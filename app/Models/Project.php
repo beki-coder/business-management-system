@@ -7,14 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $fillable = [
+        'company_id',
         'name',
         'description',
-        'client_id',
-        'manager_id'
+        'start_date',
+        'end_date'
     ];
 
-    public function client()
+    public function company()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Company::class);
+    }
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

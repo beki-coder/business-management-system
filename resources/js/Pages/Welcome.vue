@@ -1,18 +1,20 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3'
 
+// Props passed from Laravel controller
 defineProps({
     canLogin: { type: Boolean },
     canRegister: { type: Boolean },
     laravelVersion: { type: String, required: true },
     phpVersion: { type: String, required: true },
-});
+})
 
+// Function for optional image error handling
 function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden');
-    document.getElementById('docs-card')?.classList.add('!row-span-1');
-    document.getElementById('docs-card-content')?.classList.add('!flex-row');
-    document.getElementById('background')?.classList.add('!hidden');
+    document.getElementById('screenshot-container')?.classList.add('!hidden')
+    document.getElementById('docs-card')?.classList.add('!row-span-1')
+    document.getElementById('docs-card-content')?.classList.add('!flex-row')
+    document.getElementById('background')?.classList.add('!hidden')
 }
 </script>
 
@@ -20,16 +22,17 @@ function handleImageError() {
     <Head title="Enterprise Dashboard" />
 
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50 min-h-screen">
+
         <div class="relative flex flex-col items-center justify-center min-h-screen px-6 lg:px-0">
-            
+
             <!-- Header -->
             <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3 w-full max-w-7xl">
                 <div class="flex lg:col-start-2 lg:justify-center">
                     <h1 class="text-3xl font-bold text-[#FF2D20] dark:text-white">Enterprise Dashboard</h1>
                 </div>
 
-                <!-- Login/Register -->
-                <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end">
+                <!-- Login/Register Links -->
+                <nav v-if="canLogin" class="-mx-3 flex flex-1 justify-end space-x-2">
                     <Link
                         v-if="$page.props.auth.user"
                         :href="route('dashboard')"
@@ -37,6 +40,7 @@ function handleImageError() {
                     >
                         Dashboard
                     </Link>
+
                     <template v-else>
                         <Link
                             :href="route('login')"
@@ -75,8 +79,7 @@ function handleImageError() {
                                 Overview of your company's metrics and recent activity.
                             </p>
                         </div>
-                    </Link>
-                    <!-- Employees Card -->
+                    </Link><!-- Employees Card -->
                     <Link
                         :href="route('employees.index')"
                         class="flex flex-col items-start gap-6 rounded-lg bg-white p-6 shadow hover:ring-1 hover:ring-[#FF2D20] dark:bg-zinc-900 dark:hover:ring-[#FF2D20]"
@@ -172,6 +175,7 @@ function handleImageError() {
             <footer class="py-16 text-center text-sm text-black dark:text-white/70">
                 Laravel v{{ laravelVersion }} (PHP v{{ phpVersion }})
             </footer>
+
         </div>
     </div>
 </template>

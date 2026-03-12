@@ -9,10 +9,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->foreignId('assignee_id')->nullable()->constrained('users')->nullOnDelete();
-            $table->string('title');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->enum('status', ['todo', 'in_progress', 'done'])->default('todo');
             $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
             $table->timestamps();
         });
