@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\Project;
 
 class Task extends Model
 {
@@ -12,13 +14,18 @@ class Task extends Model
         'project_id',
         'start_date',
         'due_date',
-        'employee_id',
-        'status'
+        'assignee_id',  // <- updated
+        'status',
+        'priority'
     ];
-    public function project(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
+
+    public function project()
+    {
         return $this->belongsTo(Project::class);
     }
-    public function assignedTo(): \Illuminate\Database\Eloquent\Relations\BelongsTo {
-        return $this->belongsTo(User::class, 'employee_id');
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class, 'assignee_id'); // <- updated
     }
 }
