@@ -4,7 +4,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const passwordInput = ref(null);
 const currentPasswordInput = ref(null);
@@ -31,6 +31,32 @@ const updatePassword = () => {
         },
     });
 };
+
+// Password strength logic (computed properties for reactivity)
+const passwordStrength = computed(() => {
+    const value = form.password;
+    let strength = 0;
+    if (value.length > 8) strength += 25;
+    if (/[a-z]/.test(value)) strength += 15;
+    if (/[A-Z]/.test(value)) strength += 15;
+    if (/[0-9]/.test(value)) strength += 20;
+    if (/[^A-Za-z0-9]/.test(value)) strength += 25;
+    return Math.min(100, strength);
+});
+
+const strengthClass = computed(() => {
+    const strength = passwordStrength.value;
+    if (strength < 40) return 'text-red-600 font-bold';
+    if (strength < 70) return 'text-amber-600 font-bold';
+    return 'text-emerald-600 font-bold';
+});
+
+const passwordStrengthLabel = computed(() => {
+    const strength = passwordStrength.value;
+    if (strength < 40) return 'Weak';
+    if (strength < 70) return 'Medium';
+    return 'Strong';
+});
 </script>
 
 <template>
@@ -249,34 +275,6 @@ const updatePassword = () => {
         </div>
     </section>
 </template>
-
-<script setup>
-// Password strength logic (computed properties for reactivity)
-const passwordStrength = computed(() => {
-    const value = form.password;
-    let strength = 0;
-    if (value.length > 8) strength += 25;
-    if (/[a-z]/.test(value)) strength += 15;
-    if (/[A-Z]/.test(value)) strength += 15;
-    if (/[0-9]/.test(value)) strength += 20;
-    if (/[^A-Za-z0-9]/.test(value)) strength += 25;
-    return Math.min(100, strength);
-});
-
-const strengthClass = computed(() => {
-    const strength = passwordStrength.value;
-    if (strength < 40) return 'text-red-600 font-bold';
-    if (strength < 70) return 'text-amber-600 font-bold';
-    return 'text-emerald-600 font-bold';
-});
-
-const passwordStrengthLabel = computed(() => {
-    const strength = passwordStrength.value;
-    if (strength < 40) return 'Weak';
-    if (strength < 70) return 'Medium';
-    return 'Strong';
-});
-</script>
 
 <style scoped>
 .group:focus-within .group-focus-within\:text-\[#FF2D20\] {
