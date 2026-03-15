@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>My Tasks</h1>
+    <h1 class="text-2xl font-semibold mb-4">My Tasks</h1>
 
     <table class="tasks-table">
       <thead>
@@ -15,14 +15,25 @@
         <tr v-for="task in tasks" :key="task.id">
           <td>{{ task.name }}</td>
           <td>{{ task.project?.name || '-' }}</td>
-          <td>{{ task.status }}</td>
           <td>
-            <Link :href=" `/employee/tasks/${task.id}`" class="view-btn">View</Link>
-            <Link :href=" `/employee/tasks/${task.id}/edit`" class="edit-btn">Edit</Link>
+            <span
+              class="px-2 py-1 rounded text-sm font-medium"
+              :class="{
+                'bg-yellow-100 text-yellow-700': task.status === 'pending',
+                'bg-blue-100 text-blue-700': task.status === 'in_progress',
+                'bg-green-100 text-green-700': task.status === 'completed'
+              }"
+            >
+              {{ task.status }}
+            </span>
+          </td>
+          <td>
+            <Link :href="`/employee/tasks/${task.id}`" class="view-btn">View</Link>
+            <Link :href="`/employee/tasks/${task.id}/edit`" class="edit-btn">Edit</Link>
           </td>
         </tr>
         <tr v-if="tasks.length === 0">
-          <td colspan="4">No tasks assigned.</td>
+          <td colspan="4" class="text-center py-4">No tasks assigned.</td>
         </tr>
       </tbody>
     </table>

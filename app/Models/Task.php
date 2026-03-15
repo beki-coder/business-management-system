@@ -14,7 +14,7 @@ class Task extends Model
         'project_id',
         'start_date',
         'due_date',
-        'assignee_id',  // <- updated
+        'assignee_id',
         'status',
         'priority'
     ];
@@ -26,6 +26,7 @@ class Task extends Model
 
     public function assignedTo()
     {
-        return $this->belongsTo(User::class, 'assignee_id'); // <- updated
+        return $this->belongsTo(User::class,'assignee_id');
     }
+
 }

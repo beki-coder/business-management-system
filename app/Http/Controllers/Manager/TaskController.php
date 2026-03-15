@@ -10,100 +10,67 @@ use Inertia\Inertia;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of tasks
-     */
     public function index()
     {
         $tasks = Task::with('project')->latest()->get();
-
-        return Inertia::render('Manager/Tasks/Index', [
-            'tasks' => $tasks
-        ]);
+        return Inertia::render('Manager/Tasks/Index', compact('tasks'));
     }
 
-    /**
-     * Show the form for creating a new task
-     */
     public function create()
     {
         $projects = Project::all();
-
-        return Inertia::render('Manager/Tasks/Create', [
-            'projects' => $projects
-        ]);
+        return Inertia::render('Manager/Tasks/Create', compact('projects'));
     }
 
-    /**
-     * Store a newly created task
-     */
     public function store(Request $request)
     {
         $request->validate([
             'project_id' => 'required|exists:projects,id',
             'name' => 'required|max:255',
-            'description' => 'nullable',
+            'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',
-            'status' => 'required|in:pending,in_progress,completed'
+            'status' => 'required|in:todo,in_progress,done',
+            'priority' => 'required|in:low,medium,high',
         ]);
 
         Task::create($request->all());
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('success', 'Task created successfully.');
     }
 
-    /**
-     * Display the specified task
-     */
     public function show(Task $task)
     {
         $task->load('project');
-
-        return Inertia::render('Manager/Tasks/Show', [
-            'task' => $task
-        ]);
+        return Inertia::render('Manager/Tasks/Show', compact('task'));
     }
 
-    /**
-     * Show the form for editing the specified task
-     */
     public function edit(Task $task)
     {
         $projects = Project::all();
-
-        return Inertia::render('Manager/Tasks/Edit', [
-            'task' => $task,
-            'projects' => $projects
-        ]);
+        return Inertia::render('Manager/Tasks/Edit', compact('task', 'projects'));
     }
 
-    /**
-     * Update the specified task
-     */
     public function update(Request $request, Task $task)
     {
         $request->validate([
             'project_id' => 'required|exists:projects,id',
             'name' => 'required|max:255',
-            'description' => 'nullable',
+            'description' => 'nullable|string',
             'start_date' => 'nullable|date',
             'due_date' => 'nullable|date',
-            'status' => 'required|in:pending,in_progress,completed'
+            'status' => 'required|in:todo,in_progress,done',
+            'priority' => 'required|in:low,medium,high',
         ]);
 
         $task->update($request->all());
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
     }
 
-    /**
-     * Remove the specified task
-     */
     public function destroy(Task $task)
     {
         $task->delete();
-
-        return redirect()->route('tasks.index');
+        return redirect()->route('tasks.index')->with('success', 'Task deleted successfully.');
     }
 }

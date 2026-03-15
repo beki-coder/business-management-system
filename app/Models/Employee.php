@@ -1,23 +1,31 @@
 <?php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
+    use HasFactory, Notifiable, HasRoles;
+
+    protected $table = 'users'; // employees stored in users table
+
     protected $fillable = [
         'name',
         'email',
-        'phone',
-        'department_id',
-        'position',
-        'salary',
-        'join_date',
-        'status'
+        'password'
     ];
 
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
-    }
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }

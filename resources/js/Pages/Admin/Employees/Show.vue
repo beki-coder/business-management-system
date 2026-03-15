@@ -1,32 +1,3 @@
-<template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-    <div class="bg-white shadow-lg rounded-xl w-full max-w-md p-6">
-      <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Employee Details</h1>
-
-      <div class="space-y-4">
-        <div class="flex justify-between bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
-          <span class="font-medium text-gray-700">Name:</span>
-          <span class="text-gray-900">{{ employee.name }}</span>
-        </div>
-
-        <div class="flex justify-between bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
-          <span class="font-medium text-gray-700">Email:</span>
-          <span class="text-gray-900">{{ employee.email }}</span>
-        </div>
-      </div>
-
-      <div class="mt-6 text-center">
-        <Link
-          href="/admin/employees"
-          class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors duration-200"
-        >
-          Back to Employees
-        </Link>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { Link } from '@inertiajs/vue3'
 
@@ -34,3 +5,33 @@ defineProps({
   employee: Object
 })
 </script>
+
+<template>
+<div class="container">
+  <div class="card">
+    <h1>Employee Details</h1>
+    <div class="details">
+      <div class="row">
+        <span class="label">Name:</span>
+        <span>{{ employee.name }}</span>
+      </div>
+      <div class="row">
+        <span class="label">Email:</span>
+        <span>{{ employee.email }}</span>
+      </div>
+    </div>
+    <div class="mt-4">
+      <Link href="/admin/employees" class="back-btn">Back to Employees</Link>
+    </div>
+  </div>
+</div>
+</template>
+
+<style scoped>
+.container { max-width:500px; margin:auto; padding:20px; font-family:Arial; }
+.card { background:#fff; padding:25px; border-radius:8px; border:1px solid #ddd; }
+.details { margin-top:10px; }
+.row { display:flex; justify-content:space-between; padding:8px; background:#f9f9f9; border-radius:4px; margin-bottom:8px; }
+.label { font-weight:600; }
+.back-btn { color:#2563eb; text-decoration:none; }
+</style>

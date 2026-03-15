@@ -1,49 +1,3 @@
-<template>
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-    <div class="bg-white shadow-lg rounded-xl w-full max-w-md p-6">
-      <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Edit Employee</h1>
-
-      <form @submit.prevent="submit" class="space-y-4">
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Name</label>
-          <input
-            v-model="form.name"
-            type="text"
-            placeholder="Enter full name"
-            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <div>
-          <label class="block text-gray-700 font-medium mb-1">Email</label>
-          <input
-            v-model="form.email"
-            type="email"
-            placeholder="Enter email address"
-            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <button
-          type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
-        >
-          Update
-        </button>
-      </form>
-
-      <div class="mt-4 text-center">
-        <Link
-          href="/admin/employees"
-          class="text-blue-600 hover:underline"
-        >
-          Back to Employees
-        </Link>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { reactive } from 'vue'
 import { router } from '@inertiajs/vue3'
@@ -61,3 +15,35 @@ function submit() {
   router.put(`/admin/employees/${props.employee.id}`, form)
 }
 </script>
+
+<template>
+<div class="container">
+  <div class="card">
+    <h1>Edit Employee</h1>
+    <form @submit.prevent="submit" class="space-y-4">
+      <div>
+        <label>Name</label>
+        <input v-model="form.name" type="text"/>
+      </div>
+      <div>
+        <label>Email</label>
+        <input v-model="form.email" type="email"/>
+      </div>
+      <button type="submit">Update Employee</button>
+    </form>
+    <div class="mt-4">
+      <router-link href="/admin/employees" class="back-btn">Back to Employees</router-link>
+    </div>
+  </div>
+</div>
+</template>
+
+<style scoped>
+.container { max-width:500px; margin:auto; padding:20px; font-family:Arial; }
+.card { background:#fff; padding:25px; border-radius:8px; border:1px solid #ddd; }
+label { display:block; margin-bottom:5px; font-weight:600; }
+input { width:100%; padding:8px; border:1px solid #ccc; border-radius:4px; margin-bottom:12px; }
+button { background:#2563eb; color:white; padding:10px 20px; border:none; border-radius:4px; cursor:pointer; }
+button:hover { background:#1e40af; }
+.back-btn { color:#2563eb; text-decoration:none; }
+</style>

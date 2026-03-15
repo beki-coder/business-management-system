@@ -11,10 +11,15 @@ defineProps({
 
 // Function for optional image error handling
 function handleImageError() {
-    document.getElementById('screenshot-container')?.classList.add('!hidden')
-    document.getElementById('docs-card')?.classList.add('!row-span-1')
-    document.getElementById('docs-card-content')?.classList.add('!flex-row')
-    document.getElementById('background')?.classList.add('!hidden')
+    const screenshotContainer = document.getElementById('screenshot-container')
+    const docsCard = document.getElementById('docs-card')
+    const docsCardContent = document.getElementById('docs-card-content')
+    const background = document.getElementById('background')
+    
+    screenshotContainer?.classList.add('!hidden')
+    docsCard?.classList.add('!row-span-1')
+    docsCardContent?.classList.add('!flex-row')
+    background?.classList.add('!hidden')
 }
 </script>
 
@@ -53,7 +58,7 @@ function handleImageError() {
                 <!-- Login/Register Links -->
                 <nav v-if="canLogin" class="flex flex-col sm:flex-row justify-center sm:justify-end gap-3 lg:gap-4">
                     <Link
-                        v-if="$page.props.auth.user"
+                        v-if="$page.props.auth?.user"
                         :href="route('dashboard')"
                         class="group relative px-6 py-3 bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-2xl text-gray-900 dark:text-white font-semibold shadow-2xl border border-white/30 dark:border-zinc-600/40 hover:bg-white dark:hover:bg-zinc-700 hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 hover:ring-2 hover:ring-[#FF2D20]/30"
                     >
@@ -85,7 +90,7 @@ function handleImageError() {
 
             <!-- Main Cards Section -->
             <main class="mt-12 lg:mt-20 w-full max-w-7xl z-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 lg:gap-8">
                     <!-- Dashboard Card -->
                     <Link
                         :href="route('admin.dashboard')"
@@ -241,6 +246,214 @@ function handleImageError() {
                             </svg>
                         </div>
                     </Link>
+
+                    <!-- Manage Users -->
+                    <Link
+                        :href="route('users.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-pink-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-pink-400/5 to-transparent rounded-3xl group-hover:from-pink-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5v14"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Manage Users
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Create and manage system users and roles.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-pink-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- Companies -->
+                    <Link
+                        :href="route('companies.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-green-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-400/5 to-transparent rounded-3xl group-hover:from-green-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M9 8h6M9 12h6M9 16h6M4 21V7l8-4 8 4v14"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Companies
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Manage company profiles and details.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-green-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- Departments -->
+                    <Link
+                        :href="route('departments.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-yellow-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-transparent rounded-3xl group-hover:from-yellow-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-yellow-500 to-orange-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4v10l8 4 8-4V7z"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Departments
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Organize employees into departments.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-yellow-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- Assign Tasks -->
+                    <Link
+                        :href="route('tasks.create')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-orange-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent rounded-3xl group-hover:from-orange-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-orange-500 to-red-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Assign Tasks
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Assign tasks to employees and teams.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-orange-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- Team Members -->
+                    <Link
+                        :href="route('employees.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-indigo-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-indigo-400/5 to-transparent rounded-3xl group-hover:from-indigo-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Team Members
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                View and manage team members.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-indigo-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- My Tasks -->
+                    <Link
+                        :href="route('employee.tasks.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-teal-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-teal-400/5 to-transparent rounded-3xl group-hover:from-teal-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                My Tasks
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                View tasks assigned to you.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-teal-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link>
+
+                    <!-- Attendance -->
+                    <!-- <Link
+                        :href="route('attendance.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-cyan-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-transparent rounded-3xl group-hover:from-cyan-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3M5 11h14"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Attendance
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Track employee attendance.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-cyan-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link> -->
+
+                    <!-- Leave Requests -->
+                    <!-- <Link
+                        :href="route('leaves.index')"
+                        class="group relative flex flex-col items-start gap-6 rounded-3xl bg-white/70 dark:bg-zinc-800/60 backdrop-blur-xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-red-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-3 hover:scale-[1.02]"
+                    >
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-400/5 to-transparent rounded-3xl group-hover:from-red-400/10"></div>
+                        <div class="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-red-500 to-pink-500 shadow-xl group-hover:scale-110 transition-all duration-300 z-10">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3"/>
+                            </svg>
+                        </div>
+                        <div class="relative">
+                            <h2 class="text-2xl font-black text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
+                                Leave Requests
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 font-medium leading-relaxed">
+                                Manage employee leave requests.
+                            </p>
+                        </div>
+                        <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <svg class="w-6 h-6 text-red-400 transform group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </div>
+                    </Link> -->
                 </div>
             </main>
 
@@ -267,9 +480,5 @@ function handleImageError() {
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
-}
-
-.hover\:scale-\[1\.02\]:hover {
-    transform: scale(1.02);
 }
 </style>

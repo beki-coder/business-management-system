@@ -4,12 +4,16 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\Admin\CompanyController;
+use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\PositionController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Employee\TaskController as EmployeeTaskController;
 use App\Http\Controllers\Manager\ProjectController;
 use App\Http\Controllers\Manager\TaskController;
-
 use App\Http\Controllers\ReportController;
-
+use App\Http\Controllers\Employee\AttendanceController;
+use App\Http\Controllers\Employee\LeaveController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -76,6 +80,10 @@ Route::middleware(['auth','role:Admin'])->prefix('admin')->group(function () {
     Route::resource('/employees',EmployeeController::class);
 
     Route::resource('/clients',ClientController::class);
+    Route::resource('/users', UserController::class);
+    Route::resource('/companies', CompanyController::class);
+    Route::resource('/departments', DepartmentController::class);
+    Route::resource('/positions', PositionController::class);
 
 });
 
@@ -109,11 +117,22 @@ Route::middleware(['auth','role:Admin|Manager'])->group(function () {
 });
 
 
+// Route::middleware(['auth', 'role:Employee'])
+//      ->prefix('employee')
+//      ->name('employee.')
+//      ->group(function () {
+//          Route::resource('tasks', EmployeeTaskController::class);
+//      });
+
+
+
 Route::middleware(['auth', 'role:Employee'])
      ->prefix('employee')
      ->name('employee.')
      ->group(function () {
          Route::resource('tasks', EmployeeTaskController::class);
+            Route::resource('attendances', AttendanceController::class);
+            Route::resource('leaves', LeaveController::class);
      });
 
 /*

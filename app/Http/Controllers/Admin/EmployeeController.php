@@ -10,32 +10,17 @@ use Inertia\Inertia;
 
 class EmployeeController extends Controller
 {
-
-    /**
-     * Display a listing of employees
-     */
     public function index()
     {
         $employees = User::role('Employee')->get();
-
-        return Inertia::render('Admin/Employees/Index', [
-            'employees' => $employees
-        ]);
+        return Inertia::render('Admin/Employees/Index', compact('employees'));
     }
 
-
-    /**
-     * Show create employee form
-     */
     public function create()
     {
         return Inertia::render('Admin/Employees/Create');
     }
 
-
-    /**
-     * Store a new employee
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -50,38 +35,21 @@ class EmployeeController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // assign employee role
         $employee->assignRole('Employee');
 
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
-
-    /**
-     * Display employee details
-     */
     public function show(User $employee)
     {
-        return Inertia::render('Admin/Employees/Show', [
-            'employee' => $employee
-        ]);
+        return Inertia::render('Admin/Employees/Show', compact('employee'));
     }
 
-
-    /**
-     * Show edit employee form
-     */
     public function edit(User $employee)
     {
-        return Inertia::render('Admin/Employees/Edit', [
-            'employee' => $employee
-        ]);
+        return Inertia::render('Admin/Employees/Edit', compact('employee'));
     }
 
-
-    /**
-     * Update employee
-     */
     public function update(Request $request, User $employee)
     {
         $request->validate([
@@ -94,17 +62,12 @@ class EmployeeController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
-
-    /**
-     * Delete employee
-     */
     public function destroy(User $employee)
     {
         $employee->delete();
-
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
 }

@@ -1,68 +1,65 @@
-<template>
-  <div class="min-h-screen bg-gray-100 p-6">
-    <div class="max-w-6xl mx-auto bg-white shadow-lg rounded-xl p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-semibold text-gray-800">Projects</h1>
-        <Link
-          href="/manager/projects/create"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200"
-        >
-          Create Project
-        </Link>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="w-full table-auto border-collapse">
-          <thead class="bg-gray-200 text-gray-700">
-            <tr>
-              <th class="px-4 py-2 text-left">Name</th>
-              <th class="px-4 py-2 text-left">Start Date</th>
-              <th class="px-4 py-2 text-left">End Date</th>
-              <th class="px-4 py-2 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="project in projects"
-              :key="project.id"
-              class="border-b hover:bg-gray-50 transition-colors duration-150"
-            >
-              <td class="px-4 py-2">{{ project.name }}</td>
-              <td class="px-4 py-2">{{ project.start_date || 'N/A' }}</td>
-              <td class="px-4 py-2">{{ project.end_date || 'N/A' }}</td>
-              <td class="px-4 py-2 space-x-2">
-                <Link
-                  :href="`/manager/projects/${project.id}`"
-                  class="text-blue-600 hover:underline"
-                >
-                  View
-                </Link>
-                |
-                <Link
-                  :href="`/manager/projects/${project.id}/edit`"
-                  class="text-yellow-600 hover:underline"
-                >
-                  Edit
-                </Link>
-              </td>
-            </tr>
-
-            <tr v-if="projects.length === 0">
-              <td colspan="4" class="text-center py-4 text-gray-500">
-                No Projects Found
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
-import { Link } from '@inertiajs/vue3'
+import { Link, router } from '@inertiajs/vue3'
 
 const props = defineProps({
   projects: Array
 })
+
+function deleteProject(id) {
+  if (confirm('Are you sure you want to delete this project?')) {
+    router.delete(`/manager/projects/${id}`)
+  }
+}
 </script>
+
+<template>
+<div class="container">
+  <div class="header">
+    <h1>Projects</h1>
+    <Link href="/manager/projects/create" class="create-btn">Add Project</Link>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="project in projects" :key="project.id">
+          <td>{{ project.name }}</td>
+          <td>{{ project.start_date || '-' }}</td>
+          <td>{{ project.end_date || '-' }}</td>
+          <td class="actions">
+            <Link :href="`/manager/projects/${project.id}`" class="view-btn">View</Link>
+            <Link :href="`/manager/projects/${project.id}/edit`" class="edit-btn">Edit</Link>
+            <button @click="deleteProject(project.id)" class="delete-btn">Delete</button>
+          </td>
+        </tr>
+        <tr v-if="projects.length === 0">
+          <td colspan="4" class="empty">No projects found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</template>
+
+<style scoped>
+.container { max-width:900px; margin:auto; padding:20px; font-family:Arial; }
+.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.create-btn { background:#2563eb; color:white; padding:8px 16px; border-radius:4px; text-decoration:none; }
+.card { background:#f9f9f9; padding:20px; border-radius:8px; border:1px solid #ddd; }
+table { width:100%; border-collapse:collapse; }
+th, td { padding:10px; border-bottom:1px solid #ddd; text-align:left; }
+th { background:#f1f1f1; }
+.actions { display:flex; gap:8px; }
+.view-btn { background:#2563eb; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; }
+.edit-btn { background:#10b981; color:white; padding:5px 10px; border-radius:4px; text-decoration:none; }
+.delete-btn { background:#dc2626; color:white; padding:5px 10px; border:none; border-radius:4px; cursor:pointer; }
+.empty { text-align:center; padding:20px; }
+</style>
