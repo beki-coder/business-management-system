@@ -70,14 +70,12 @@ import { usePage, Link } from '@inertiajs/vue3';
 
 const { props } = usePage();
 
-// Props passed from Laravel controller
 const user = props.user;
 const roles = props.roles || [];
 const departments = props.departments || [];
 const positions = props.positions || [];
 const errors = props.errors || {};
 
-// Reactive form
 const form = reactive({
   name: user.name,
   email: user.email,
@@ -88,7 +86,6 @@ const form = reactive({
   //role: user.roles[0]?.name || '',
 });
 
-// Submit function
 function submit() {
   Inertia.put(route('users.update', user.id), form);
 }

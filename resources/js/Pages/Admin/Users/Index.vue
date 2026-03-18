@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-8">
-    <!-- Header Section -->
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-10 gap-6">
         <div>
@@ -21,7 +20,6 @@
         </Link>
       </div>
 
-      <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/50 hover:shadow-3xl transition-all duration-300 hover:-translate-y-2">
           <div class="flex items-center justify-between">
@@ -66,7 +64,6 @@
         </div>
       </div>
 
-      <!-- Users Table -->
       <div v-if="usersList.length" class="bg-white/70 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/60 overflow-hidden">
         <div class="px-8 py-6 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-slate-100">
           <h2 class="text-2xl font-bold text-slate-800">All Team Members</h2>
@@ -159,7 +156,6 @@
         </div>
       </div>
 
-      <!-- Empty State -->
       <div v-else class="text-center py-24 px-8">
         <div class="max-w-md mx-auto">
           <div class="w-32 h-32 bg-gradient-to-br from-slate-200 to-slate-300 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl">

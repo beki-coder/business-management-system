@@ -10,7 +10,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::where('assignee_id', auth()->id())
+        $tasks = Task::With('project', 'employee')->where('employee_id', auth()->id())
                      ->orderBy('due_date', 'asc')
                      ->get();
 
@@ -19,7 +19,7 @@ class TaskController extends Controller
 
     public function show(Task $task)
     {
-        if ($task->assignee_id !== auth()->id()) {
+        if ($task->employee_id !== auth()->id()) {
             abort(403, 'Unauthorized access.');
         }
 

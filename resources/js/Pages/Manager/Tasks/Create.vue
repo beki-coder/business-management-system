@@ -6,14 +6,16 @@ const props = defineProps({
   employees: Array
 })
 
+
 const form = useForm({
   name: '',
   project_id: '',
-  employee_id: '',
+  employee_id: '',  
   description: '',
   start_date: '',
   due_date: '',
-  status: 'pending'
+  status: 'todo',    
+  priority: 'medium' 
 })
 
 function submit() {
@@ -30,6 +32,7 @@ function submit() {
       <div>
         <label class="block text-gray-700 font-medium mb-1">Task Name</label>
         <input type="text" v-model="form.name" class="w-full border border-gray-300 rounded-lg px-4 py-2" />
+        <div v-if="form.errors.name" class="text-red-600 text-sm">{{ form.errors.name }}</div>
       </div>
 
       <div>
@@ -38,6 +41,7 @@ function submit() {
           <option value="" disabled>Select Project</option>
           <option v-for="project in projects" :key="project.id" :value="project.id">{{ project.name }}</option>
         </select>
+        <div v-if="form.errors.project_id" class="text-red-600 text-sm">{{ form.errors.project_id }}</div>
       </div>
 
       <div>
@@ -46,6 +50,7 @@ function submit() {
           <option value="" disabled>Select Employee</option>
           <option v-for="employee in employees" :key="employee.id" :value="employee.id">{{ employee.name }}</option>
         </select>
+        <div v-if="form.errors.employee_id" class="text-red-600 text-sm">{{ form.errors.employee_id }}</div>
       </div>
 
       <div>
@@ -67,9 +72,18 @@ function submit() {
       <div>
         <label class="block text-gray-700 font-medium mb-1">Status</label>
         <select v-model="form.status" class="w-full border border-gray-300 rounded-lg px-4 py-2">
-          <option value="pending">Pending</option>
+          <option value="todo">To Do</option>
           <option value="in_progress">In Progress</option>
-          <option value="completed">Completed</option>
+          <option value="done">Done</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="block text-gray-700 font-medium mb-1">Priority</label>
+        <select v-model="form.priority" class="w-full border border-gray-300 rounded-lg px-4 py-2">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
         </select>
       </div>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-100 p-8">
-    <!-- Header with Glass Effect -->
     <div class="max-w-7xl mx-auto">
       <div class="flex justify-between items-center mb-8 backdrop-blur-md bg-white/80 border border-white/50 rounded-2xl p-6 shadow-2xl">
         <div class="flex items-center space-x-4">
@@ -25,7 +24,6 @@
         </Link>
       </div>
 
-      <!-- Enhanced Companies Table with Card Design -->
       <div v-if="companies.length" class="backdrop-blur-md bg-white/90 border border-white/50 rounded-3xl shadow-2xl overflow-hidden">
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200">
@@ -65,7 +63,6 @@
                   <p class="text-gray-700 line-clamp-2 leading-relaxed">{{ company.description }}</p>
                 </td>
                 <td class="px-8 py-6 whitespace-nowrap text-sm font-medium space-x-3">
-                  <!-- Edit Button -->
                   <Link
                     :href="`/admin/companies/${company.id}/edit`"
                     class="group/edit flex items-center space-x-2 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-yellow-500 hover:to-yellow-600 transform hover:-translate-y-0.5 transition-all duration-200"
@@ -76,7 +73,6 @@
                     <span>Edit</span>
                   </Link>
 
-                  <!-- Delete Button -->
                   <button
                     @click="destroy(company.id)"
                     class="group/delete flex items-center space-x-2 bg-gradient-to-r from-red-500 to-red-600 text-white px-5 py-2.5 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:from-red-600 hover:to-red-700 transform hover:-translate-y-0.5 transition-all duration-200"
@@ -93,7 +89,6 @@
         </div>
       </div>
 
-      <!-- Enhanced Empty State -->
       <div v-else class="text-center py-24 backdrop-blur-md bg-white/60 border-2 border-dashed border-gray-200 rounded-3xl shadow-xl">
         <div class="w-24 h-24 bg-gradient-to-br from-gray-200 to-gray-300 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
           <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -121,12 +116,10 @@ import { usePage, Link } from '@inertiajs/vue3';
 const { props } = usePage();
 const companies = ref(props.companies);
 
-// Delete company
 function destroy(id) {
   if (confirm('Are you sure you want to delete this company?')) {
     Inertia.delete(`/admin/companies/${id}`, {
       onSuccess: () => {
-        // Remove company from local state after deletion
         companies.value = companies.value.filter(c => c.id !== id);
       },
     });

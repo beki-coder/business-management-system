@@ -14,7 +14,6 @@ function deleteClient(id){
 
 <template>
 <div class="clients-container">
-    <!-- Header Section -->
     <div class="clients-header">
         <div class="header-content">
             <div class="header-left">
@@ -41,7 +40,6 @@ function deleteClient(id){
         </Link>
     </div>
 
-    <!-- Clients Table Card -->
     <div class="clients-card">
         <div class="table-container">
             <div class="table-wrapper">
@@ -409,7 +407,7 @@ function deleteClient(id){
     box-shadow: 0 4px 14px 0 rgba(102, 126, 234, 0.39);
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .clients-container {
         padding: 1rem;

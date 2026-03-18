@@ -28,9 +28,9 @@
       <Link href="/employee/tasks" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg">
         Back to My Tasks
       </Link>
-      <Link :href="`/employee/tasks/${task.id}/edit`" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+      <!-- <Link :href="`/employee/tasks/${task.id}/edit`" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
         Edit Task
-      </Link>
+      </Link> -->
     </div>
   </div>
 </template>

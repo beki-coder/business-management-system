@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 to-indigo-100 p-8">
-    <!-- Header Card -->
     <div class="max-w-7xl mx-auto">
       <div class="bg-white/80 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl p-8 mb-8">
         <div class="flex justify-between items-center mb-8">
@@ -21,7 +20,6 @@
           </Link>
         </div>
 
-        <!-- Departments Table Card -->
         <div v-if="departments.length" class="bg-white/60 backdrop-blur-2xl border border-white/40 rounded-2xl shadow-2xl overflow-hidden">
           <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-slate-200">
@@ -90,7 +88,6 @@
           </div>
         </div>
 
-        <!-- Empty State -->
         <div v-else class="text-center py-20">
           <div class="w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
             <svg class="w-16 h-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

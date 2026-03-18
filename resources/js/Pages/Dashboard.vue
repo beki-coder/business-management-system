@@ -26,9 +26,7 @@ import { Head } from '@inertiajs/vue3';
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 space-y-8">
                 
-                <!-- Stats Cards Row -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Total Employees -->
                     <div class="group relative bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-[#FF2D20]/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]">
                         <div class="absolute inset-0 bg-gradient-to-br from-[#FF2D20]/5 to-transparent rounded-3xl group-hover:from-[#FF2D20]/10"></div>
                         <div class="relative flex flex-col h-full">
@@ -53,7 +51,6 @@ import { Head } from '@inertiajs/vue3';
                         </div>
                     </div>
 
-                    <!-- Active Projects -->
                     <div class="group relative bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-blue-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]">
                         <div class="absolute inset-0 bg-gradient-to-br from-blue-400/5 to-transparent rounded-3xl group-hover:from-blue-400/10"></div>
                         <div class="relative flex flex-col h-full">
@@ -78,7 +75,6 @@ import { Head } from '@inertiajs/vue3';
                         </div>
                     </div>
 
-                    <!-- Revenue -->
                     <div class="group relative bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-emerald-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]">
                         <div class="absolute inset-0 bg-gradient-to-br from-emerald-400/5 to-transparent rounded-3xl group-hover:from-emerald-400/10"></div>
                         <div class="relative flex flex-col h-full">
@@ -103,7 +99,6 @@ import { Head } from '@inertiajs/vue3';
                         </div>
                     </div>
 
-                    <!-- Tasks -->
                     <div class="group relative bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/40 dark:border-zinc-700/50 hover:border-orange-400/30 hover:bg-white/90 dark:hover:bg-zinc-700/80 transition-all duration-500 transform hover:-translate-y-2 hover:scale-[1.02]">
                         <div class="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-transparent rounded-3xl group-hover:from-orange-400/10"></div>
                         <div class="relative flex flex-col h-full">
@@ -129,9 +124,7 @@ import { Head } from '@inertiajs/vue3';
                     </div>
                 </div>
 
-                <!-- Welcome & Quick Actions -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Welcome Section -->
                     <div class="bg-gradient-to-br from-white/80 via-blue-50/70 to-indigo-50/50 dark:from-zinc-800/70 dark:via-slate-800/50 dark:to-gray-900/50 backdrop-blur-xl rounded-3xl p-10 shadow-2xl border border-white/40 dark:border-zinc-700/50">
                         <div class="flex items-start gap-6">
                             <div class="w-20 h-20 bg-gradient-to-r from-[#FF2D20] to-red-500 rounded-2xl flex items-center justify-center shadow-2xl flex-shrink-0">
@@ -160,13 +153,12 @@ import { Head } from '@inertiajs/vue3';
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
                     <div class="bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/40 dark:border-zinc-700/50">
                         <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-6 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent">
                             Quick Actions
                         </h3>
                         <div class="grid grid-cols-2 gap-4">
-                            <button class="group relative p-6 rounded-2xl bg-gradient-to-r from-[#FF2D20] to-red-500 text-white font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden">
+                            <button  class="group relative p-6 rounded-2xl bg-gradient-to-r from-[#FF2D20] to-red-500 text-white font-semibold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 hover:scale-[1.02] transition-all duration-300 overflow-hidden">
                                 <div class="absolute inset-0 bg-white/20 group-hover:bg-white/30 transition-all duration-300"></div>
                                 <div class="relative flex flex-col items-center gap-2">
                                     <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,7 +198,6 @@ import { Head } from '@inertiajs/vue3';
                     </div>
                 </div>
 
-                <!-- Recent Activity -->
                 <div class="bg-white/70 dark:bg-zinc-800/70 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/40 dark:border-zinc-700/50">
                     <h3 class="text-2xl font-black text-gray-900 dark:text-white mb-8 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-200 bg-clip-text text-transparent flex items-center gap-3">
                         Recent Activity

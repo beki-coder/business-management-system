@@ -10,30 +10,40 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    /**
-     * Show the reports for Admin and Manager.
-     */
     public function index(Request $request)
     {
         $user = auth()->user();
 
-        // Admin sees all projects, tasks, users
+        // ADMIN REPORT
         if ($user->hasRole('Admin')) {
-            $projects = Project::with('tasks', 'company')->get();
-            $tasks = Task::with('project', 'assignedTo')->get();
-            $users = User::with('roles', 'company')->get();
+
+            $projects = Project::with(['tasks', 'company'])->get();
+
+            $tasks = Task::with(['project', 'employee'])->get();
+
+            $users = User::with(['roles', 'company'])->get();
+
         }
-        // Manager sees only their company data
+
+        // MANAGER REPORT
         elseif ($user->hasRole('Manager')) {
-            $projects = Project::with('tasks')
+
+            $projects = Project::with(['tasks'])
                 ->where('company_id', $user->company_id)
                 ->get();
-            $tasks = Task::with('project', 'assignedTo')
+
+            $tasks = Task::with(['project', 'employee'])
                 ->whereHas('project', function ($q) use ($user) {
                     $q->where('company_id', $user->company_id);
-                })->get();
-            $users = User::where('company_id', $user->company_id)->get();
-        } else {
+                })
+                ->get();
+
+            $users = User::with(['roles','company'])
+                ->where('company_id', $user->company_id)
+                ->get();
+        }
+
+        else {
             abort(403);
         }
 

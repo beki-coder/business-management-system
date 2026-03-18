@@ -18,11 +18,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Public Route
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -33,27 +28,10 @@ Route::get('/', function () {
     ]);
 });
 
-/*
-|--------------------------------------------------------------------------
-| Dashboard (Authenticated Users)
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth','verified'])->name('dashboard');
-// Route::get('/dashboard', function () {
-//     $user = auth()->user();
-//     if ($user->hasRole('Admin')) return redirect()->route('admin.dashboard');
-//     if ($user->hasRole('Manager')) return redirect()->route('manager.projects.index');
-//     if ($user->hasRole('Employee')) return redirect()->route('employee.tasks.index');
-//     abort(403);
-// })->middleware(['auth','verified'])->name('dashboard');
-/*
-|--------------------------------------------------------------------------
-| Profile (Breeze)
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware('auth')->group(function () {
 
@@ -66,11 +44,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware(['auth','role:Admin'])->prefix('admin')->group(function () {
 
@@ -88,11 +61,6 @@ Route::middleware(['auth','role:Admin'])->prefix('admin')->group(function () {
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| Manager Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware(['auth','role:Manager'])->prefix('manager')->group(function () {
 
@@ -103,11 +71,6 @@ Route::middleware(['auth','role:Manager'])->prefix('manager')->group(function ()
 });
 
 
-/*
-|--------------------------------------------------------------------------
-| Reports (Admin + Manager)
-|--------------------------------------------------------------------------
-*/
 
 Route::middleware(['auth','role:Admin|Manager'])->group(function () {
 
@@ -117,12 +80,6 @@ Route::middleware(['auth','role:Admin|Manager'])->group(function () {
 });
 
 
-// Route::middleware(['auth', 'role:Employee'])
-//      ->prefix('employee')
-//      ->name('employee.')
-//      ->group(function () {
-//          Route::resource('tasks', EmployeeTaskController::class);
-//      });
 
 
 
@@ -135,10 +92,5 @@ Route::middleware(['auth', 'role:Employee'])
             Route::resource('leaves', LeaveController::class);
      });
 
-/*
-|--------------------------------------------------------------------------
-| Breeze Authentication Routes
-|--------------------------------------------------------------------------
-*/
 
 require __DIR__.'/auth.php';

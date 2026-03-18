@@ -86,7 +86,6 @@ function deleteEmployee(id) {
 </template>
 
 <style scoped>
-/* Custom hover effects and animations */
 .view-btn:hover, .edit-btn:hover, .delete-btn:hover, .create-btn:hover {
   transform: translateY(-2px);
 }

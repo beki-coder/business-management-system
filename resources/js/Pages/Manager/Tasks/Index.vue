@@ -14,10 +14,8 @@ function deleteTask(id) {
 
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-8">
-    <!-- Animated floating card -->
     <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-xl shadow-2xl rounded-3xl p-8 border border-white/50">
       
-      <!-- Header with gradient and glass effect -->
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-8 pb-8 border-b border-gray-100">
         <div>
           <h1 class="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-gray-900 via-blue-900 to-indigo-900 bg-clip-text text-transparent drop-shadow-lg">
@@ -26,7 +24,6 @@ function deleteTask(id) {
           <p class="text-gray-600 mt-2 font-medium">Manage your projects efficiently</p>
         </div>
         
-        <!-- Enhanced Create Button with glassmorphism -->
         <Link href="/manager/tasks/create"
               class="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-2xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 border border-blue-500/30 backdrop-blur-sm">
           <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +33,6 @@ function deleteTask(id) {
         </Link>
       </div>
 
-      <!-- Enhanced responsive table with modern styling -->
       <div class="overflow-hidden rounded-2xl border border-gray-200/50 shadow-lg bg-white/50 backdrop-blur-sm">
         <div class="overflow-x-auto">
           <table class="min-w-full divide-y divide-gray-200/30">
@@ -83,7 +79,6 @@ function deleteTask(id) {
                 </td>
                 <td class="px-8 py-6">
                   <div class="flex items-center space-x-3">
-                    <!-- View Button -->
                     <Link :href="`/manager/tasks/${task.id}`" 
                           class="group/btn inline-flex items-center px-4 py-2 text-sm font-semibold text-blue-700 bg-blue-100 hover:bg-blue-200 rounded-xl hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 border border-blue-200/50">
                       <svg class="w-4 h-4 mr-1 group-hover/btn:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,7 +88,6 @@ function deleteTask(id) {
                       View
                     </Link>
                     
-                    <!-- Edit Button -->
                     <Link :href="`/manager/tasks/${task.id}/edit`" 
                           class="group/btn inline-flex items-center px-4 py-2 text-sm font-semibold text-amber-700 bg-amber-100 hover:bg-amber-200 rounded-xl hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 border border-amber-200/50">
                       <svg class="w-4 h-4 mr-1 group-hover/btn:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +96,6 @@ function deleteTask(id) {
                       Edit
                     </Link>
                     
-                    <!-- Delete Button -->
                     <button @click="deleteTask(task.id)" 
                             class="group/btn inline-flex items-center px-4 py-2 text-sm font-semibold text-red-700 bg-red-100 hover:bg-red-200 rounded-xl hover:shadow-md transform hover:-translate-y-0.5 transition-all duration-200 border border-red-200/50">
                       <svg class="w-4 h-4 mr-1 group-hover/btn:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

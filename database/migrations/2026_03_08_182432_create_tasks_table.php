@@ -9,7 +9,7 @@ return new class extends Migration {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('assignee_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('employee_id')->nullable()->constrained('users')->nullOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
             $table->enum('status', ['todo', 'in_progress', 'done'])->default('todo');

@@ -1,6 +1,5 @@
 <template>
   <div class="p-8 bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
-    <!-- Header Section -->
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
       <div>
         <h1 class="text-4xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
@@ -19,7 +18,6 @@
       </Link>
     </div>
 
-    <!-- Stats Cards -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       <div class="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/50 hover:shadow-3xl transition-all duration-300">
         <div class="flex items-center gap-3">
@@ -36,7 +34,6 @@
       </div>
     </div>
 
-    <!-- Table Section -->
     <div v-if="positions.length" class="bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
       <div class="p-8 border-b border-gray-100">
         <div class="flex items-center justify-between">
@@ -115,7 +112,6 @@
       </div>
     </div>
 
-    <!-- Empty State -->
     <div v-else class="text-center py-24 px-8">
       <div class="max-w-md mx-auto">
         <div class="w-24 h-24 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-xl">
@@ -157,7 +153,6 @@ function destroy(id) {
   }
 }
 
-// Format currency helper
 function formatCurrency(amount) {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',

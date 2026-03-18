@@ -1,7 +1,6 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
-      <!-- Header -->
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4">
           My Tasks
@@ -9,7 +8,6 @@
         <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
       </div>
 
-      <!-- Table Card -->
       <div class="bg-white/80 backdrop-blur-xl shadow-2xl border border-white/50 rounded-3xl p-8">
         <div class="overflow-hidden rounded-2xl border border-gray-200">
           <table class="tasks-table w-full divide-y divide-gray-200">
@@ -61,13 +59,13 @@
                     </svg>
                     View
                   </Link>
-                  <Link :href="`/employee/tasks/${task.id}/edit`" 
+                  <!-- <Link :href="`/employee/tasks/${task.id}/edit`" 
                         class="edit-btn inline-flex items-center px-4 py-2 border border-transparent rounded-xl font-semibold text-sm shadow-lg transform hover:scale-105 hover:shadow-xl transition-all duration-200 bg-gradient-to-r from-emerald-500 to-teal-600 text-white hover:from-emerald-600 hover:to-teal-700">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
                     Edit
-                  </Link>
+                  </Link> -->
                 </td>
               </tr>
               <tr v-if="tasks.length === 0">
